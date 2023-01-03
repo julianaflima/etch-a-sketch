@@ -1,0 +1,18 @@
+
+
+.draw-space {
+	background-color: green;
+	height: 500px;
+	width: 500px;
+	margin-top: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
+	gap: 1px;
+}
+
+.inside-square {
+	background-color: white;
+	margin: 0px;
+}
