@@ -14,7 +14,7 @@ function createGrid(gridSide) {
 	for(let i = 0; i < gridNumber; i++){
 		
 	const newSquare = document.createElement('div');
-	newSquare.className = 'inside-square-eraser';
+	newSquare.className = 'inside-square';
 	newSquare.style.height = `${side}px`;
 	newSquare.style.width = `${side}px`;
 	drawSpace.appendChild(newSquare);
@@ -23,18 +23,14 @@ function createGrid(gridSide) {
 
 createGrid(gridSide);
 
-// This const can't come before createGrid because there aren't divs with the inside-square-default class before the grid is created
-const squares = document.querySelectorAll('.inside-square-eraser')
+// This const can't come before createGrid because there aren't divs with the inside-square class before the grid is created
+const squares = document.querySelectorAll('.inside-square')
 
 // Choose color
 let chosenColor = '';
 colorButtons.forEach(colorButton => {
 	colorButton.addEventListener('mousedown',
-		(e) => {
-			chosenColor = `${e.target.textContent.toLowerCase()}`;
-			console.log(chosenColor);
-
-		});
+		(e) => chosenColor = `${e.target.textContent.toLowerCase()}`);
 });
 
 // Change color when square is clicked or over with click
@@ -47,21 +43,10 @@ function clickNDrag(e) {
 	squares.forEach(square => {
 		square.addEventListener('mouseover', changeColor);
 	});
+
 	squares.forEach(square => {
 		square.addEventListener('mouseup', stop);
 	});
-}
-
-// Which color depends on which button clicked
-function changeColor(e) {
-	// e.target.style.backgroundColor = `${chosenColor}`;
-	
-	let classesOn = e.target.classList
-	console.log(classesOn);
-	classesOn.forEach(classOn => e.target.classList.toggle(`${classOn}`));
-	e.target.classList.toggle(`inside-square-${chosenColor}`);
-	console.log(classesOn);
-
 }
 
 function stop(e) {
@@ -69,5 +54,29 @@ function stop(e) {
 		square.removeEventListener('mouseover', changeColor);
 	});
 }
+
+// Change background to the chosen color
+function changeColor(e) {	
+	let classesOn = e.target.classList
+
+	switch (chosenColor) {
+		case 'rainbow':
+			e.target.style.backgroundColor = "rgb("+Math.floor(Math.random() * 255) +","+ Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")";
+			break;
+
+		case 'red':
+		case 'blue':
+			e.target.style.backgroundColor = `${chosenColor}`;
+			break;
+		case 'eraser':
+			e.target.style.backgroundColor = `white`;
+			break;
+		default:
+			e.target.className = 'inside-square';
+			break;
+	}
+}
+
+
 
 
