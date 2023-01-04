@@ -1,7 +1,16 @@
 
 
-.draw-space {
-	background-color: green;
+
+
+.inside-square {
+	background-color: white;
+	margin: 0px;
+	border: 0.25px solid lightgrey;
+	box-sizing: border-box;
+}
+
+#draw-space {
+	/*background-color: green;*/
 	height: 500px;
 	width: 500px;
 	margin-top: 20px;
@@ -9,10 +18,6 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	align-content: center;
-	gap: 1px;
-}
-
-.inside-square {
-	background-color: white;
-	margin: 0px;
+	/*gap: .5px;*/
+	border: 0.25px solid lightgrey;
 }
